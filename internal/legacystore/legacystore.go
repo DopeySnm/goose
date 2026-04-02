@@ -55,6 +55,8 @@ func NewStore(d database.Dialect) (Store, error) {
 		querier = dialects.NewPostgres()
 	case database.DialectMySQL:
 		querier = dialects.NewMysql()
+	case database.DialectManticoreMySQL:
+		querier = dialects.NewManticoreMysql()
 	case database.DialectSQLite3:
 		querier = dialects.NewSqlite3()
 	case database.DialectSpanner:

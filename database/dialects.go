@@ -14,19 +14,20 @@ import (
 type Dialect string
 
 const (
-	DialectCustom     Dialect = ""
-	DialectClickHouse Dialect = "clickhouse"
-	DialectAuroraDSQL Dialect = "dsql"
-	DialectMSSQL      Dialect = "mssql"
-	DialectMySQL      Dialect = "mysql"
-	DialectPostgres   Dialect = "postgres"
-	DialectRedshift   Dialect = "redshift"
-	DialectSQLite3    Dialect = "sqlite3"
-	DialectSpanner    Dialect = "spanner"
-	DialectStarrocks  Dialect = "starrocks"
-	DialectTiDB       Dialect = "tidb"
-	DialectTurso      Dialect = "turso"
-	DialectYdB        Dialect = "ydb"
+	DialectCustom         Dialect = ""
+	DialectClickHouse     Dialect = "clickhouse"
+	DialectAuroraDSQL     Dialect = "dsql"
+	DialectMSSQL          Dialect = "mssql"
+	DialectMySQL          Dialect = "mysql"
+	DialectManticoreMySQL Dialect = "manticoreMysql"
+	DialectPostgres       Dialect = "postgres"
+	DialectRedshift       Dialect = "redshift"
+	DialectSQLite3        Dialect = "sqlite3"
+	DialectSpanner        Dialect = "spanner"
+	DialectStarrocks      Dialect = "starrocks"
+	DialectTiDB           Dialect = "tidb"
+	DialectTurso          Dialect = "turso"
+	DialectYdB            Dialect = "ydb"
 
 	// DEPRECATED: Vertica support is deprecated and will be removed in a future release.
 	DialectVertica Dialect = "vertica"
@@ -38,19 +39,20 @@ func NewStore(d Dialect, tableName string) (Store, error) {
 		return nil, errors.New("custom dialect is not supported")
 	}
 	lookup := map[Dialect]dialect.Querier{
-		DialectClickHouse: dialects.NewClickhouse(),
-		DialectAuroraDSQL: dialects.NewAuroraDSQL(),
-		DialectMSSQL:      dialects.NewSqlserver(),
-		DialectMySQL:      dialects.NewMysql(),
-		DialectPostgres:   dialects.NewPostgres(),
-		DialectRedshift:   dialects.NewRedshift(),
-		DialectSQLite3:    dialects.NewSqlite3(),
-		DialectSpanner:    dialects.NewSpanner(),
-		DialectStarrocks:  dialects.NewStarrocks(),
-		DialectTiDB:       dialects.NewTidb(),
-		DialectTurso:      dialects.NewTurso(),
-		DialectVertica:    dialects.NewVertica(),
-		DialectYdB:        dialects.NewYDB(),
+		DialectClickHouse:     dialects.NewClickhouse(),
+		DialectAuroraDSQL:     dialects.NewAuroraDSQL(),
+		DialectMSSQL:          dialects.NewSqlserver(),
+		DialectMySQL:          dialects.NewMysql(),
+		DialectManticoreMySQL: dialects.NewManticoreMysql(),
+		DialectPostgres:       dialects.NewPostgres(),
+		DialectRedshift:       dialects.NewRedshift(),
+		DialectSQLite3:        dialects.NewSqlite3(),
+		DialectSpanner:        dialects.NewSpanner(),
+		DialectStarrocks:      dialects.NewStarrocks(),
+		DialectTiDB:           dialects.NewTidb(),
+		DialectTurso:          dialects.NewTurso(),
+		DialectVertica:        dialects.NewVertica(),
+		DialectYdB:            dialects.NewYDB(),
 	}
 	querier, ok := lookup[d]
 	if !ok {

@@ -11,18 +11,19 @@ import (
 type Dialect = database.Dialect
 
 const (
-	DialectCustom     Dialect = database.DialectCustom
-	DialectClickHouse Dialect = database.DialectClickHouse
-	DialectMSSQL      Dialect = database.DialectMSSQL
-	DialectMySQL      Dialect = database.DialectMySQL
-	DialectPostgres   Dialect = database.DialectPostgres
-	DialectRedshift   Dialect = database.DialectRedshift
-	DialectSQLite3    Dialect = database.DialectSQLite3
-	DialectSpanner    Dialect = database.DialectSpanner
-	DialectStarrocks  Dialect = database.DialectStarrocks
-	DialectTiDB       Dialect = database.DialectTiDB
-	DialectTurso      Dialect = database.DialectTurso
-	DialectYdB        Dialect = database.DialectYdB
+	DialectCustom         Dialect = database.DialectCustom
+	DialectClickHouse     Dialect = database.DialectClickHouse
+	DialectMSSQL          Dialect = database.DialectMSSQL
+	DialectMySQL          Dialect = database.DialectMySQL
+	DialectManticoreMySQL Dialect = database.DialectManticoreMySQL
+	DialectPostgres       Dialect = database.DialectPostgres
+	DialectRedshift       Dialect = database.DialectRedshift
+	DialectSQLite3        Dialect = database.DialectSQLite3
+	DialectSpanner        Dialect = database.DialectSpanner
+	DialectStarrocks      Dialect = database.DialectStarrocks
+	DialectTiDB           Dialect = database.DialectTiDB
+	DialectTurso          Dialect = database.DialectTurso
+	DialectYdB            Dialect = database.DialectYdB
 
 	// Dialects only available to the [Provider].
 	DialectAuroraDSQL Dialect = database.DialectAuroraDSQL
@@ -45,6 +46,8 @@ func SetDialect(s string) error {
 		d = DialectPostgres
 	case "mysql":
 		d = DialectMySQL
+	case "manticoreMysql":
+		d = DialectManticoreMySQL
 	case "sqlite3", "sqlite":
 		d = DialectSQLite3
 	case "spanner":
